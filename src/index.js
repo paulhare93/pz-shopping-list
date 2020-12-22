@@ -1,24 +1,22 @@
 const storage = window.localStorage;
+let itemsToBuy = [];
 const singleProduct = {
   name: "",
   amount: 0,
   unit: "",
   category: "",
 };
-
-let itemsToBuy = [];
-const storageInit = function () {
+storageInit = () => {
   itemsToBuy =
     storage.length > 0 && storage.getItem("itemsToBuy")
       ? JSON.parse(storage.getItem("itemsToBuy"))
       : [];
   updateList();
 };
-
 let totalItems = 0;
 let totalWeight = 0;
 
-const storageUpdate = function () {
+storageUpdate = () => {
   storage.setItem("itemsToBuy", JSON.stringify(itemsToBuy));
 };
 
@@ -28,13 +26,13 @@ const amount = document.getElementById("amount");
 const unit = document.getElementById("unitRadioSzt");
 const category = document.getElementById("category");
 //
-const cleanForm = function () {
+cleanForm = () => {
   nameInput.value = "";
   amount.value = "";
 
   category.value = "pieczywo";
 };
-document.addElement = function (event) {
+addElement = (event) => {
   event.preventDefault();
   const item = Object.create(singleProduct);
   item.name = nameInput.value;
@@ -43,13 +41,16 @@ document.addElement = function (event) {
     ? document.getElementById("unitRadioSzt").value
     : document.getElementById("unitRadioKg").value;
   item.category = category.value;
-
-  addToList(item, itemsToBuy);
-  updateList();
-  cleanForm();
+  if (item.name && item.amount && item.unit && item.category) {
+    addToList(item, itemsToBuy);
+    updateList();
+    cleanForm();
+  } else {
+    throw Error("Nie uzupełniony!");
+  }
 };
 
-const addToList = function (obj, itemsList) {
+addToList = (obj, itemsList) => {
   let changed = false;
   itemsList.map((el) => {
     if (
@@ -68,18 +69,19 @@ const addToList = function (obj, itemsList) {
     return itemsList.push(obj);
   }
 };
-const listToDisplay = function () {
+listToDisplay = () => {
   if (itemsToBuy.length > 0) {
     for (const item of itemsToBuy) {
       addToDisplay(item);
     }
   }
-  document.getElementById(
-    "headerList"
-  ).innerHTML = `Twoja lista zakupów zawiera ${totalItems} elementów i waży ${totalWeight} kilogramów`;
+  document.getElementById("headerList").innerHTML =
+    itemsToBuy.length > 0
+      ? `Twoja lista zakupów zawiera ${totalItems} elementów i waży ${totalWeight} kilogramów`
+      : `Twoja lista jest pusta.`;
 };
 
-const addToDisplay = function (item) {
+addToDisplay = (item) => {
   const targetToFill = document.getElementById("main");
   const element = document.getElementById(item.name + item.unit)
     ? document.getElementById(item.name + item.unit)
@@ -93,7 +95,7 @@ const addToDisplay = function (item) {
   })<button class="btn btn-danger float-end" onclick="removeElement(event)">X</button></>`;
   targetToFill.appendChild(element);
 };
-const updateList = function () {
+updateList = () => {
   // zliczanie wagi i elementów (założyłem, że przypisuję jeden wpis do jednej kategorii ( waga lub ilość) możliwe rozbudowanie)
   totalItems = 0;
   totalWeight = 0;
@@ -108,7 +110,7 @@ const updateList = function () {
   storageUpdate();
 };
 
-const removeElement = function (event) {
+removeElement = (event) => {
   itemsToBuy.splice(
     itemsToBuy.findIndex(
       (el) => el.name + el.unit === event.target.parentNode.id
@@ -118,3 +120,4 @@ const removeElement = function (event) {
   event.target.parentNode.remove();
   updateList();
 };
+storageInit();
