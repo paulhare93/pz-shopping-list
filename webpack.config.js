@@ -7,4 +7,8 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "index.bundle.js",
   },
+  optimization: {
+    concatenateModules: true,
+    minimize: false,
+  },
 };

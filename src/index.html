@@ -1,93 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>WhatToBuy?</title>
     <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-            crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-<nav class="container-fluid">
-    <div class="row bg-primary">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="container-fluid">
+      <div class="row bg-primary">
         <h2 class="text-center">Lista zakupów.</h2>
-    </div>
-</nav>
-<div class="container mt-3">
-    <div class="row g-2 p-x-3 justify-content-center">
+      </div>
+    </nav>
+    <div class="container mt-3">
+      <div class="row g-2 p-x-3 justify-content-center">
         <div class="col-12 col-md-6 p-4" id="formPlace">
-            <form>
-                <input
-                        class="form-control"
-                        name="nameInput"
-                        placeholder="Produkt"
-                        id="nameInput"
-                        type="text"
-                        required
-                />
+          <form>
+            <input
+              class="form-control"
+              name="nameInput"
+              placeholder="Produkt"
+              id="nameInput"
+              type="text"
+              required
+            />
 
-                <input
-                        class="form-control"
-                        id="amount"
-                        type="number"
-                        placeholder="Ilość"
-                        min="0"
-                        max="50"
-                        step="0.01"
-                        required
-                />
-                <input
-                        class="form-check-input"
-                        type="radio"
-                        name="unit"
-                        id="unitRadioSzt"
-                        value="szt"
-                        checked
-                        required
-                />
-                <label for="unitRadioSzt">szt</label>
-                <input
-                        class="form-check-input"
-                        type="radio"
-                        name="unit"
-                        id="unitRadioKg"
-                        value="kg"
-                        required
-                />
-                <label for="unitRadioKg">kg</label>
+            <input
+              class="form-control"
+              id="amount"
+              type="number"
+              placeholder="Ilość"
+              min="0"
+              max="50"
+              step="0.01"
+              required
+            />
+            <input
+              class="form-check-input"
+              type="radio"
+              name="unit"
+              id="unitRadioSzt"
+              value="szt"
+              checked
+              required
+            />
+            <label for="unitRadioSzt">szt</label>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="unit"
+              id="unitRadioKg"
+              value="kg"
+              required
+            />
+            <label for="unitRadioKg">kg</label>
 
-                <select class="form-select" name="category" id="category">
-                    <option value="pieczywo">Pieczywo</option>
-                    <option value="nabial">Nabiał</option>
-                    <option value="owoceWarzywa">Owoce i warzywa</option>
-                    <option value="kosmetyczne">Artykuły kosmetyczne</option>
-                    <option value="chemiaGosp">Chemia gospodarcza</option>
-                    <option value="inne">Inne...</option>
-                </select>
+            <select class="form-select" name="category" id="category">
+              <option value="pieczywo">Pieczywo</option>
+              <option value="nabial">Nabiał</option>
+              <option value="owoceWarzywa">Owoce i warzywa</option>
+              <option value="kosmetyczne">Artykuły kosmetyczne</option>
+              <option value="chemiaGosp">Chemia gospodarcza</option>
+              <option value="inne">Inne...</option>
+            </select>
 
-                <button class="btn btn-success w-100" type="button" onclick="addElement(event)">Dodaj</button>
-            </form>
+            <button
+              class="btn btn-success w-100"
+              type="button"
+              onclick="addElement(event)"
+            >
+              Dodaj
+            </button>
+          </form>
         </div>
         <div class="col-12 col-md-6 p-4">
-            <div class="card"">
-                <div id="headerList" class="card-header">Lista</div>
-                <ul class="list-group list-group-flush" id="main"></ul>
-            </div>
+          <div class="card">
+            <div id="headerList" class="card-header">Lista</div>
+            <ul class="list-group list-group-flush" id="main"></ul>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-<script src="../dist/index.bundle.js"></script>
+    <script src="../dist/index.bundle.js"></script>
 
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"
-></script>
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

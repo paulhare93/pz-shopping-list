@@ -7,7 +7,7 @@ const singleProduct = {
 };
 
 let itemsToBuy = [];
-export const storageInit = () => {
+const storageInit = function () {
   itemsToBuy =
     storage.length > 0 && storage.getItem("itemsToBuy")
       ? JSON.parse(storage.getItem("itemsToBuy"))
@@ -28,13 +28,13 @@ const amount = document.getElementById("amount");
 const unit = document.getElementById("unitRadioSzt");
 const category = document.getElementById("category");
 //
-const cleanForm = () => {
+const cleanForm = function () {
   nameInput.value = "";
   amount.value = "";
 
   category.value = "pieczywo";
 };
-const addElement = (event) => {
+document.addElement = function (event) {
   event.preventDefault();
   const item = Object.create(singleProduct);
   item.name = nameInput.value;
@@ -49,7 +49,7 @@ const addElement = (event) => {
   cleanForm();
 };
 
-const addToList = (obj, itemsList) => {
+const addToList = function (obj, itemsList) {
   let changed = false;
   itemsList.map((el) => {
     if (
@@ -68,7 +68,7 @@ const addToList = (obj, itemsList) => {
     return itemsList.push(obj);
   }
 };
-const listToDisplay = () => {
+const listToDisplay = function () {
   if (itemsToBuy.length > 0) {
     for (const item of itemsToBuy) {
       addToDisplay(item);
@@ -79,7 +79,7 @@ const listToDisplay = () => {
   ).innerHTML = `Twoja lista zakupów zawiera ${totalItems} elementów i waży ${totalWeight} kilogramów`;
 };
 
-const addToDisplay = (item) => {
+const addToDisplay = function (item) {
   const targetToFill = document.getElementById("main");
   const element = document.getElementById(item.name + item.unit)
     ? document.getElementById(item.name + item.unit)
@@ -93,8 +93,8 @@ const addToDisplay = (item) => {
   })<button class="btn btn-danger float-end" onclick="removeElement(event)">X</button></>`;
   targetToFill.appendChild(element);
 };
-const updateList = () => {
-  // zliczanie wagi i elementów (założyłem, że przypisuję jeden wpis do jednej kategori ( waga lub ilość) możliwe rozbudowanie)
+const updateList = function () {
+  // zliczanie wagi i elementów (założyłem, że przypisuję jeden wpis do jednej kategorii ( waga lub ilość) możliwe rozbudowanie)
   totalItems = 0;
   totalWeight = 0;
   if (itemsToBuy.length > 0) {
@@ -108,7 +108,7 @@ const updateList = () => {
   storageUpdate();
 };
 
-const removeElement = (event) => {
+const removeElement = function (event) {
   itemsToBuy.splice(
     itemsToBuy.findIndex(
       (el) => el.name + el.unit === event.target.parentNode.id
